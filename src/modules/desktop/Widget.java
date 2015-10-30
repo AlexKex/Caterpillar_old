@@ -2,6 +2,8 @@ package modules.desktop;
 
 import modules.Module;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 
 /**
@@ -36,5 +38,9 @@ public abstract class Widget extends Module implements desktopModuleInterface {
 
     protected void prepareData() throws IOException {
 
+    }
+
+    public JComponent getComponent() throws IOException {
+        return null;
     }
 }

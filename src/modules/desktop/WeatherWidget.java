@@ -1,8 +1,9 @@
 package modules.desktop;
 
-import modules.Module;
 import modules.serviceModule.WeatherService;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -12,18 +13,19 @@ import java.util.HashMap;
 public class WeatherWidget extends Widget implements desktopModuleInterface {
     protected WeatherService myServiceModule;
     protected HashMap<String, Object> data;
+    protected JComponent component;
 
     public WeatherWidget(){
         String searchCity = "Moscow";
         this.myServiceModule = new WeatherService(searchCity);
 
+        this.component = new JPanel();
         this.data = new HashMap<>();
     }
 
     @Override
     public void render() {
-        // создать слой в окне главного приложения
-        this.addToScreen("", null);
+
     }
 
     @Override
@@ -34,6 +36,13 @@ public class WeatherWidget extends Widget implements desktopModuleInterface {
     @Override
     public void expand() {
 
+    }
+
+    public JComponent getComponent() throws IOException {
+        this.prepareData();
+        this.prepareWidget();
+
+        return this.component;
     }
 
     /**
@@ -54,17 +63,16 @@ public class WeatherWidget extends Widget implements desktopModuleInterface {
             this.myServiceModule.requestWeather();
             this.setData("weatherCity", this.myServiceModule.getWeatherCity());
         } catch (IOException e) {
-            // TODO оповещать пользователя, что что-то пошло не так
+            // TODO РѕРїРѕРІРµС‰Р°С‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ, С‡С‚Рѕ С‡С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє
             // e.printStackTrace();
         }
     }
 
     /**
-     * add new widget to main application screen
-     * @param container_id
-     * @param widget
+     * prepare widget to main application screen
      */
-    protected void addToScreen(String container_id, Object widget){
-
+    protected void prepareWidget(){
+        System.out.println("Preparing widget");
+        this.component.add(new JLabel("Weather in " + this.myServiceModule.getWeatherCity()));
     }
 }
