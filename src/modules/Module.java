@@ -1,5 +1,7 @@
 package modules;
 
+import modules.desktop.Widget;
+
 /**
  * Created by apryakhin on 28.10.2015.
  */

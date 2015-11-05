@@ -20,6 +20,9 @@ public class WeatherWidget extends Widget implements desktopModuleInterface {
         this.myServiceModule = new WeatherService(searchCity);
 
         this.component = new JPanel();
+        this.component.setPreferredSize(new Dimension(this.standard_width, this.standard_height));
+        this.component.setSize(this.standard_width, this.standard_height);
+        this.component.setBackground(new Color(0x0000ff00));
         this.data = new HashMap<>();
     }
 
@@ -73,6 +76,9 @@ public class WeatherWidget extends Widget implements desktopModuleInterface {
      */
     protected void prepareWidget(){
         System.out.println("Preparing widget");
-        this.component.add(new JLabel("Weather in " + this.myServiceModule.getWeatherCity()));
+
+        JLabel weather_label = new JLabel("Weather in " + this.myServiceModule.getWeatherCity());
+
+        this.component.add(weather_label);
     }
 }

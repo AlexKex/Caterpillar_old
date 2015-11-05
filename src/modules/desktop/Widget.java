@@ -13,6 +13,9 @@ public abstract class Widget extends Module implements desktopModuleInterface {
     protected Module myServiceModule;
     protected Object Data;
 
+    protected int standard_height   = 240;
+    protected int standard_width    = 240;
+
     @Override
     public void render() {
 
